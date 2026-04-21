@@ -46,11 +46,11 @@
 <script setup>
 import { ref, computed } from 'vue';
 
-// 1. DEFINIMOS LAS PROPS UNA SOLA VEZ Y LAS ASIGNAMOS A UNA CONSTANTE
-// Ahora 'props' contiene todo lo que viene del padre
+//  LAS PROPS UNA SOLA VEZ Y SE ASIGNAN A UNA CONSTANTE
+//  'props' contiene todo lo que viene del padre
 const props = defineProps(['isOpen', 'books']);
 
-// 2. DEFINIMOS LOS EVENTOS
+// LOS EVENTOS
 defineEmits(['close']);
 
 // 3. ESTADOS LOCALES
@@ -61,17 +61,16 @@ const searchType = ref('title');
 const filteredBooks = computed(() => {
 const query = searchQuery.value.toLowerCase().trim();
 
-// Si el campo está vacío, devolvemos una lista vacía
+// Si el campo está vacío, se devuelve una lista vacía
 if (!query) return [];
 
-// IMPORTANTE: Aquí usamos 'props.books' porque definimos la constante arriba
+//  'props.books'
 return props.books.filter(book => {
     const valueToCompare = book[searchType.value].toLowerCase();
     return valueToCompare.includes(query);
 });
 });
 
-// Ya no necesitamos la línea de defineProps al final, ¡borrada!
 </script>
 
 <style scoped>
